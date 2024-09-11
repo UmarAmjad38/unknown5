@@ -45,11 +45,15 @@
 .heading {
   margin-inline: auto;
   z-index: 2;
-  font-size: 8rem; 
+  font-size: 5rem; 
   text-align: center;
-  font-weight: 500;
+  // font-weight: 500;
+  line-height: 1;
   @include lg {
     margin-bottom: 100px;
+      font-size: 8.5rem; 
+      text-align: center;
+      line-height: 1.1;
   }
   svg {
     width: 80vw;
@@ -127,7 +131,7 @@
   }
   &_video {
     position: absolute;
-    width: 65%;
+    width: 67%;
     height: 100%;
     top: -2%;
     left: 48.8%;

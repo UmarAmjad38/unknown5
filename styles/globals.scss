@@ -83,6 +83,10 @@ main {
   overflow-x: hidden;
 }
 
+.mouse.hidden {
+  display: none;
+}
+
 .mouse {
   height: 180px;
   width: 180px;

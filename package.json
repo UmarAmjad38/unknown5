@@ -13,6 +13,7 @@
     "@studio-freight/react-lenis": "^0.0.47",
     "@types/react-lottie": "^1.2.10",
     "gsap": "^3.12.5",
+    "lodash.debounce": "^4.0.8",
     "lottie-react": "^2.4.0",
     "next": "14.2.1",
     "react": "^18",

@@ -17,7 +17,7 @@ const Showreel = () => {
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: video.current,
-          start: "top 80%",
+          start: "top 90%",
           end: "bottom top",
           scrub: true,
         },
@@ -30,24 +30,24 @@ const Showreel = () => {
           {
             x: 0,
             y: -100,
-            duration: 1.7,
+            duration: 2.2,
             ease: "power1.out",
-            clipPath: "polygon(0 0, 100% 0, 100% 91%, 0 100%)",
+            clipPath: "polygon(0 0, 100% 0, 100% 95%, 0 100%)",
           }
         )
         .to(video.current, {
-          x: -40,
+          x: -20,
           y: -100,
           duration: 1,
           ease: "power1.out",
-          clipPath: "polygon(0 0, 100% 0, 100% 85%, 0 100%)",
+          clipPath: "polygon(0 0, 100% 0, 100% 88%, 0 100%)",
         })
         .to(video.current, {
           x: -40,
           y: -100,
           duration: 2,
           ease: "power1.out",
-          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 80%)",
+          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 78%)",
         });
     }
   }, []);

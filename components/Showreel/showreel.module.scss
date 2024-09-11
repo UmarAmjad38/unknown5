@@ -47,10 +47,16 @@
 
 .heading {
   margin-inline: auto;
-  margin-bottom: 160px;
-  font-size: 8rem; 
+  margin-bottom: 150px;
+  font-size: 5rem; 
   text-align: center;
-  font-weight: 500;
+  line-height: 1;
+  // font-weight: 500;
+  @include lg {
+    font-size: 8.5rem; 
+    text-align: center;
+    line-height: 1.1;
+  }
   svg {
     width: 80vw;
     path {

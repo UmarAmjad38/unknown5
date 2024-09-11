@@ -211,7 +211,7 @@ const Services = () => {
               className={`slide-${i} ${s.slide}`}
             >
               {/* <Elements id={i} /> */}
-              <h3>{heading}</h3>
+              <h3 style={{marginBottom: 70}} >{heading}</h3>
             </div>
           );
         })}

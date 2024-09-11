@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Header from "../Header/Header";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -14,6 +14,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   const mouseHover = useRef<GSAPTween>();
   const xTo = useRef<gsap.QuickToFunc>();
   const yTo = useRef<gsap.QuickToFunc>();
+  const [initialized, setInitialized] = useState(false);
 
   const { contextSafe } = useGSAP(
     () => {
@@ -49,6 +50,54 @@ const Layout: React.FC<Props> = ({ children }) => {
     { scope: container }
   );
 
+  useEffect(() => {
+    const hideMouseInitially = () => {
+      const mouseElement = document.querySelector(".mouse");
+      if (mouseElement) {
+        mouseElement.classList.add("hidden");
+      }
+    };
+
+    hideMouseInitially();
+
+    const storedX = localStorage.getItem("mouseX");
+    const storedY = localStorage.getItem("mouseY");
+
+    if (storedX && storedY) {
+      xTo.current?.(parseFloat(storedX));
+      yTo.current?.(parseFloat(storedY));
+    } else {
+      xTo.current?.(window.innerWidth / 2 - 90);
+      yTo.current?.(window.innerHeight / 2 - 90); 
+    }
+
+    const showMouseAfterDelay = () => {
+      setTimeout(() => {
+        const mouseElement = document.querySelector(".mouse");
+        if (mouseElement) {
+          mouseElement.classList.remove("hidden");
+        }
+      }, 100); 
+    };
+
+    showMouseAfterDelay();
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = e.clientX - 90; 
+      const y = e.clientY - 90; 
+
+      xTo.current?.(x);
+      yTo.current?.(y);
+
+      localStorage.setItem("mouseX", x.toString());
+      localStorage.setItem("mouseY", y.toString());
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [contextSafe]);
+
   const moveMover = contextSafe((e: React.MouseEvent) => {
     xTo.current!(e.clientX - 90);
     yTo.current!(e.clientY - 90);
@@ -74,13 +123,14 @@ const Layout: React.FC<Props> = ({ children }) => {
       .to(".menuinside", { opacity: 1, duration: 0.2, stagger: 0.1 }, "<0.3");
     mouseHover.current?.play();
   });
+
   const handlePointerLeave = contextSafe(() => {
     mouseHover.current?.reverse();
   });
 
   return (
     <main onMouseMove={moveMover} ref={container}>
-      <div className="mouse">
+      <div className="mouse hidden">
         <p className="mousepara">View</p>
       </div>
       <Preloader />

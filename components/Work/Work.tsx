@@ -4,19 +4,19 @@ import s from "./work.module.scss";
 import { data } from "./data";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { WorkHeading } from "../Svg/Svg";
+// import { WorkHeading } from "../Svg/Svg";
 import Image from "next/image";
 import { useSnapshot } from "valtio";
 import { store } from "@/store";
 import Preloader from "../Preloader/Preloader";
 import { useRouter } from "next/router";
-import Link from 'next/link';
+// import Link from 'next/link';
 
 const Work = () => {
   const container = useRef<HTMLElement>(null);
   const heading = useRef<HTMLDivElement>(null);
   const [counter, setCounter] = useState<number>(1);
-  const [loading, setLoading] = useState(false); // State to control the loader
+  const [loading, setLoading] = useState(false); 
   const router = useRouter();
 
   useEffect(() => {
@@ -127,10 +127,11 @@ const Work = () => {
             defaults: { ease: "none" },
           });
 
-          data.map((e, i) => {
-            tl.call(() => setCounter(i + 1))
-              .to(`.slide-${i - 1}`, { yPercent: -100 })
-              .from(`.slide-${i}`, { yPercent: i === 0 ? 0 : 100 }, "<")
+          data.forEach((_, i) => {
+            tl
+              .call(() => setCounter(i + 1))
+              .to(`.slide-${i - 1}`, { yPercent: -100, duration: 1 })
+              .from(`.slide-${i}`, { yPercent: i === 0 ? 0 : 100, duration: 1 })
               .from(`.work-path-${i + 1}`, {
                 scale: 0,
                 duration: 0.8,
@@ -154,23 +155,50 @@ const Work = () => {
       );
     },
     { scope: container }
+
+    //       data.map((e, i) => {
+    //         tl.call(() => setCounter(i + 1))
+    //           .to(`.slide-${i - 1}`, { yPercent: -100 })
+    //           .from(`.slide-${i}`, { yPercent: i === 0 ? 0 : 100 }, "<")
+    //           .from(`.work-path-${i + 1}`, {
+    //             scale: 0,
+    //             duration: 0.8,
+    //             ease: "power4",
+    //           })
+    //           .from(`.heading-${i}`, { scale: innerWidth < 1600 ? 0.6 : 0.6 })
+    //           .from(`.image-${i}`, {
+    //             left: isDesktop ? "120%" : "80%",
+    //             top: isDesktop ? "50%" : "100%",
+    //             rotate: -35,
+    //             duration: 5,
+    //           })
+    //           .call(() => setCounter(i + 1))
+    //           .to(`.work-path-${i + 1}`, {
+    //             scale: 0,
+    //             duration: 0.8,
+    //             ease: "power4",
+    //           });
+    //       });
+    //     }
+    //   );
+    // },
+    // { scope: container }
   );
 
   const { workHeadingPointerEnter, workHeadingPointerLeave } =
     useSnapshot(store);
 
-  // Function to handle card click and show loader
   const handleCardClick = (id: number) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      router.push(`/work/${id}`); // Dynamic routing to the subpage
-    }, 1000); // Simulate loading time
+      router.push(`/work/${id}`); 
+    }, 1000); 
   };
 
   return (
     <section id="work" ref={container} className={s.main}>
-      {loading && <Preloader />} {/* Show loader if loading is true */}
+      {loading && <Preloader />} 
       <div ref={heading} className={`work-heading ${s.heading}`}>
         <div className="word">
           {"Discover".split("").map((letter, index) => (
