@@ -1,0 +1,39 @@
+{
+  "name": "star-of-life",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.1",
+    "@studio-freight/react-lenis": "^0.0.47",
+    "@types/react-lottie": "^1.2.10",
+    "gsap": "^3.12.5",
+    "lottie-react": "^2.4.0",
+    "next": "14.2.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-fast-marquee": "^1.6.4",
+    "react-lottie": "^1.2.4",
+    "react-lottie-player": "^2.0.0",
+    "react-use-window-scroll": "^1.1.7",
+    "sharp": "^0.33.5",
+    "split-type": "^0.3.4",
+    "three": "^0.168.0",
+    "valtio": "^1.13.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/three": "^0.168.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.1",
+    "sass": "^1.75.0",
+    "typescript": "^5"
+  }
+}

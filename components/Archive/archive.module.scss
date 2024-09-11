@@ -1,0 +1,364 @@
+@import "../../styles/breakpoint";
+
+.main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 120px;
+  @include lg {
+    min-height: 100vh;
+    margin-top: 190px;
+  }
+  h1 {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    font-weight: 400;
+    margin-inline: auto;
+    max-width: 1260px;
+    font-size: 4rem;
+    line-height: calc(4rem * 1.2);
+    cursor: default;
+    text-transform: uppercase;
+    span {
+      display: inline-block;
+      transform-origin: bottom;
+    }
+    @include lg {
+      font-size: 15.625rem;
+      line-height: calc(15.625rem / 2);
+      margin-top: calc(15.625rem / 2);
+      margin-bottom: calc(15.625rem / 2);
+    }
+    @include xxl {
+      margin-top: 10.937rem;
+      margin-bottom: 10.937rem;
+      max-width: 1560px;
+      font-size: 21.875rem;
+      line-height: 10.937rem;
+    }
+  }
+}
+
+.heading {
+  margin-inline: auto;
+  z-index: 2;
+  font-size: 8rem; 
+  text-align: center;
+  font-weight: 500;
+  @include lg {
+    margin-bottom: 100px;
+  }
+  svg {
+    width: 80vw;
+    path {
+      fill: transparent;
+      stroke-dasharray: 1360px;
+      stroke: black;
+    }
+  }
+}
+
+.grid {
+  margin-top: 100px;
+  display: grid;
+  justify-content: center;
+  padding-inline: 20px;
+  row-gap: 12px;
+  @include lg {
+    // row-gap: 100px;
+    column-gap: 160px;
+    padding-inline: 0px;
+    grid-template-columns: repeat(2, min-content);
+    margin-top: 200px;
+  }
+  @include xxl {
+    column-gap: 250px;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  h2 {
+    font-size: 1.5625rem;
+    line-height: calc(1.5625rem * 1.5);
+    @include lg {
+      font-size: 1.875rem;
+      line-height: calc(1.875rem * 1.1);
+    }
+    @include xxl {
+      font-size: 2.56vw;
+      line-height: 2.56vw;
+    }
+  }
+  p {
+    font-size: 1rem;
+    line-height: calc(1rem * 1.5);
+    @include lg {
+      font-size: 1rem;
+      line-height: calc(1rem * 1.5);
+      max-width: 450px;
+    }
+    @include xxl {
+      font-size: 1.4vw;
+      line-height: calc(1.4vw * 1.4);
+      max-width: 32vw;
+    }
+  }
+  @include lg {
+    &[data-varient="absolute"] {
+      top: -295px;
+      left: 154px;
+    }
+    &[data-varient="absolute-right"] {
+      right: 154px;
+    }
+    &[data-varient="absolute-top"] {
+      top: -295px;
+    }
+    &[data-varient="full"] {
+      grid-column: 2 span;
+    }
+  }
+  &_video {
+    position: absolute;
+    width: 65%;
+    height: 100%;
+    top: -2%;
+    left: 48.8%;
+    transform: translateX(-50%) scaleY(1.1);
+    z-index: -1;
+  }
+  &_img {
+    position: relative;
+    width: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 354px;
+    height: 271px;
+    @include lg {
+      height: 354px;
+      width: 578px;
+      &[data-varient="long"] {
+        height: 550px;
+        width: 350px;
+      }
+      &[data-varient="square"] {
+        height: 470px;
+        width: 424px;
+      }
+      &[data-varient="full"] {
+        height: auto;
+        margin: auto;
+        width: 70%;
+        aspect-ratio: 16/9;
+        transform: scale(0.8);
+      }
+    }
+    @include xxl {
+      height: 25vw;
+      width: 42vw;
+      &[data-varient="long"] {
+        height: 47vw;
+        width: 31vw;
+      }
+      &[data-varient="square"] {
+        height: 34vw;
+        width: 31vw;
+      }
+    }
+  }
+  &_box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    @include lg {
+      padding-left: 50px;
+      gap: 24px;
+    }
+    &[data-less="true"] {
+      padding-left: 30px;
+    }
+    &[data-varient="full"] {
+      transform: translateY(-100px);
+      // align-items: center;
+      // justify-content: center;
+      // text-align: center;
+      // padding-left: 0px !important;
+    }
+  }
+}
+
+.pathOne {
+  position: absolute;
+  top: 360px;
+  left: 20%;
+  z-index: -1;
+  svg {
+    width: 92vw;
+    height: 20vw;
+  }
+}
+
+.pathTwo {
+  position: absolute;
+  top: -180px;
+  left: 85%;
+  svg {
+    width: 26vw;
+    height: 42vw;
+  }
+}
+.pathThree {
+  position: absolute;
+  top: 820px;
+  left: 74%;
+  svg {
+    width: 48vw;
+    height: 42vw;
+  }
+}
+.pathFour {
+  position: absolute;
+  top: 1360px;
+  left: -30%;
+  svg {
+    width: 88vw;
+    height: 41vw;
+  }
+}
+.pathFive {
+  position: absolute;
+  top: 1750px;
+  left: 85%;
+
+  svg {
+    width: 22vw;
+    height: 19vw;
+  }
+}
+.pathSix {
+  position: absolute;
+  top: 1630px;
+  left: 73%;
+  z-index: 2;
+  svg {
+    width: 31vw;
+    height: 23vw;
+  }
+}
+.pathSeven {
+  position: absolute;
+  top: 1880px;
+  left: -4%;
+  svg {
+    width: 23vw;
+    height: 21vw;
+  }
+}
+.pathEight {
+  position: absolute;
+  top: 2500px;
+  left: 36%;
+  svg {
+    width: 100px;
+    height: 100px;
+    @include lg {
+      width: 12vw;
+      height: 10vw;
+    }
+  }
+}
+.pathNine {
+  position: absolute;
+  bottom: 575px;
+  right: 0%;
+  @include xxl {
+    bottom: 690px;
+  }
+  svg {
+    width: 49vw;
+    height: 10vw;
+  }
+}
+.pathTen {
+  position: absolute;
+  bottom: 300px;
+  right: 0%;
+  svg {
+    width: 53vw;
+    height: 30vw;
+  }
+}
+.pathEleven {
+  position: absolute;
+  bottom: 0px;
+  left: 30%;
+  z-index: 2;
+  svg {
+    width: 18vw;
+    height: 16vw;
+  }
+}
+
+.pathTwelve {
+  position: absolute;
+  top: 4630px;
+  left: 73%;
+  z-index: 2;
+  svg {
+    width: 31vw;
+    height: 23vw;
+  }
+}
+.pathThirteen {
+  position: absolute;
+  top: 3880px;
+  left: -4%;
+  svg {
+    width: 23vw;
+    height: 21vw;
+  }
+}
+.pathFouteen {
+  position: absolute;
+  top: 3500px;
+  left: 36%;
+  svg {
+    width: 100px;
+    height: 100px;
+    @include lg {
+      width: 12vw;
+      height: 10vw;
+    }
+  }
+}
+.pathFifty {
+  position: absolute;
+  bottom: 1975px;
+  right: 0%;
+  @include xxl {
+    bottom: 690px;
+  }
+  svg {
+    width: 49vw;
+    height: 10vw;
+  }
+}
+
+.tag {
+  position: absolute;
+  z-index: 2;
+  transform: translateY(-50%) rotate(270deg);
+  top: 50%;
+  left: -55px;
+  font-size: 2.5rem;
+  line-height: calc(2.5rem * 1.2);
+}
