@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { ClientsHeading } from "../Svg/Svg";
 import Marquee from "react-fast-marquee";
 import gsap from "gsap";
+import { memo } from "react"
 
 const Client = () => {
   const container = useRef<HTMLDivElement>(null);
@@ -249,6 +250,7 @@ const Client = () => {
                   height={1000}
                   width={1000}
                   alt="logo"
+                  loading="lazy" 
                 />
               );
             })}
@@ -263,6 +265,7 @@ const Client = () => {
                   height={1000}
                   width={1000}
                   alt="logo"
+                  loading="lazy" 
                 />
               );
             })}
@@ -287,4 +290,4 @@ const Client = () => {
   );
 };
 
-export default Client;
+export default memo(Client);

@@ -4,6 +4,7 @@ import s from "./footer.module.scss";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { memo } from "react"
 
 const CustomLink = ({ text, href }: { text: string; href: string }) => {
   const container = useRef<HTMLAnchorElement>(null);
@@ -67,4 +68,4 @@ const CustomLink = ({ text, href }: { text: string; href: string }) => {
   );
 };
 
-export default CustomLink;
+export default memo(CustomLink);

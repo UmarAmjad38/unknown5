@@ -4,6 +4,7 @@ import { Accept, Decline } from "../Svg/Svg";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { memo } from "react"
 
 const Cookie = () => {
   const container = useRef<HTMLDivElement>(null);
@@ -47,4 +48,4 @@ const Cookie = () => {
   );
 };
 
-export default Cookie;
+export default memo(Cookie);

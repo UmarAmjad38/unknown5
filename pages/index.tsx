@@ -1,14 +1,17 @@
-import About from "@/components/About/About";
-import Archive from "@/components/Archive/Archive";
-import Client from "@/components/Client/Client";
-import Contact from "@/components/Contact/Contact";
-import Cookie from "@/components/Cookie/Cookie";
-import Footer from "@/components/Footer/Footer";
-import Services from "@/components/Services/Services";
-import Showreel from "@/components/Showreel/Showreel";
-import Work from "@/components/Work/Work";
-import Hero from "@/components/Hero/Hero";
-import Head from "next/head";
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+
+// Dynamically import components
+const About = dynamic(() => import('@/components/About/About'));
+const Archive = dynamic(() => import('@/components/Archive/Archive'));
+const Client = dynamic(() => import('@/components/Client/Client'));
+const Contact = dynamic(() => import('@/components/Contact/Contact'));
+const Cookie = dynamic(() => import('@/components/Cookie/Cookie'));
+const Footer = dynamic(() => import('@/components/Footer/Footer'));
+const Services = dynamic(() => import('@/components/Services/Services'));
+const Showreel = dynamic(() => import('@/components/Showreel/Showreel'));
+const Work = dynamic(() => import('@/components/Work/Work'));
+const Hero = dynamic(() => import('@/components/Hero/Hero'));
 
 export default function Home() {
   return (

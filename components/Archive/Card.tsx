@@ -43,6 +43,7 @@ const Card: React.FC<Props> = ({
             src={video}
             className={s.card_video}
             frameBorder={0}
+            loading="lazy"
             allow="autoplay; fullscreen; picture-in-picture"
           ></iframe>
         )}

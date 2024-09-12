@@ -6,6 +6,7 @@ import { data } from "./data";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 // import { ArchiveHeading } from "../Svg/Svg";
+import { memo } from "react"
 
 const Archive = () => {
   const container = useRef<HTMLElement>(null);
@@ -370,4 +371,4 @@ const Archive = () => {
   );
 };
 
-export default Archive;
+export default memo(Archive);

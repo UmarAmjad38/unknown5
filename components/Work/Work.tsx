@@ -8,15 +8,16 @@ import gsap from "gsap";
 import Image from "next/image";
 import { useSnapshot } from "valtio";
 import { store } from "@/store";
-import Preloader from "../Preloader/Preloader";
+// import Preloader from "../Preloader/Preloader";
 import { useRouter } from "next/router";
+import { memo } from "react"
 // import Link from 'next/link';
 
 const Work = () => {
   const container = useRef<HTMLElement>(null);
   const heading = useRef<HTMLDivElement>(null);
   const [counter, setCounter] = useState<number>(1);
-  const [loading, setLoading] = useState(false); 
+  // const [loading, setLoading] = useState(false); 
   const router = useRouter();
 
   useEffect(() => {
@@ -189,16 +190,16 @@ const Work = () => {
     useSnapshot(store);
 
   const handleCardClick = (id: number) => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    // // setLoading(true);
+    // setTimeout(() => {
+      // setLoading(false);
       router.push(`/work/${id}`); 
-    }, 1000); 
+    // }, 1000); 
   };
 
   return (
     <section id="work" ref={container} className={s.main}>
-      {loading && <Preloader />} 
+      {/* {loading && <Preloader />}  */}
       <div ref={heading} className={`work-heading ${s.heading}`}>
         <div className="word">
           {"Discover".split("").map((letter, index) => (
@@ -238,6 +239,7 @@ const Work = () => {
                 alt="image"
                 height={2000}
                 width={2000}
+                loading="lazy" 
               />
 
               <div
@@ -257,4 +259,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default memo(Work);

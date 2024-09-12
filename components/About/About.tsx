@@ -6,6 +6,7 @@ import SplitType from "split-type";
 import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { memo } from "react"
 // import { AboutHeading } from "../Svg/Svg";
 
 const About = () => {
@@ -205,6 +206,7 @@ const About = () => {
           height={1000}
           width={1000}
           alt="owner"
+          loading="lazy" 
         />
         <div className={`about-para-box ${s.box}`}>
           <p ref={para} className={s.content}>
@@ -229,4 +231,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default memo(About);

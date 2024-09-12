@@ -5,6 +5,7 @@ import CustomLink from "./CustomLink";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { memo } from "react"
 
 const Footer = () => {
   const container = useRef<HTMLDivElement>(null);
@@ -77,4 +78,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

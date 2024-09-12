@@ -9,6 +9,7 @@ import useWindowSize from "@/hooks/useWindowSize";
 import Lottie from "react-lottie";
 import { useState, useEffect } from "react";
 import { flushAllTraces } from "next/dist/trace";
+import { memo } from "react"
 
 const Hero = () => {
   const scrollTo = useScrollTo();
@@ -51,4 +52,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default memo(Hero);

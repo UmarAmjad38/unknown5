@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     scrollTo(0, 0);
-  }, [scrollTo]);
+  }, []);
 
   useEffect(() => {
     function update(time: number) {

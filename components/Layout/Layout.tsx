@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { store } from "@/store";
 import Preloader from "../Preloader/Preloader";
+import { memo } from "react"
 
 type Props = {
   children: React.ReactNode;
@@ -143,4 +144,4 @@ const Layout: React.FC<Props> = ({ children }) => {
   );
 };
 
-export default Layout;
+export default memo(Layout);

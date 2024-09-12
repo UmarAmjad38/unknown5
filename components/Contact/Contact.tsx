@@ -5,6 +5,7 @@ import s from "./contact.module.scss";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { memo } from "react"
 
 const Contact = () => {
   const container = useRef<HTMLDivElement>(null);
@@ -197,4 +198,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default memo(Contact);

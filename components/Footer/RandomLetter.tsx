@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {memo} from "react"
 
 const RandomLetter = () => {
   const [letter, setLetter] = useState("A");
@@ -15,4 +16,4 @@ const RandomLetter = () => {
   return <>{letter}</>;
 };
 
-export default RandomLetter;
+export default memo(RandomLetter);

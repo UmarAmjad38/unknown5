@@ -1,5 +1,6 @@
 import { Star } from "../Svg/Svg";
 import s from "./star.module.scss";
+import { memo } from "react"
 
 const AnimeStar = () => {
   return (
@@ -9,4 +10,4 @@ const AnimeStar = () => {
   );
 };
 
-export default AnimeStar;
+export default memo(AnimeStar);

@@ -6,6 +6,7 @@ import gsap from "gsap";
 // import Elements from "./Elements";
 import { ServiceMenu } from "../Svg/Svg";
 // import { ServicesHeading } from "../Svg/Svg";
+import { memo } from "react"
 
 const Services = () => {
   const container = useRef<HTMLElement>(null);
@@ -220,4 +221,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default memo(Services);

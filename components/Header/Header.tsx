@@ -10,6 +10,7 @@ import RandomLetter from "../Footer/RandomLetter";
 import CustomLink from "../Footer/CustomLink";
 import { useLottie } from "lottie-react";
 import PL from "./PL_logo.json";
+import { memo } from "react"
 const Header = ({
   menuBtnEnter,
   menuBtnLeave,
@@ -444,4 +445,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default memo(Header);

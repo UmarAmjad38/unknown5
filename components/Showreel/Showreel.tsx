@@ -4,6 +4,7 @@ import s from "./showreel.module.scss";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 // import { ShowreelHeading } from "../Svg/Svg";
+import { memo } from "react"
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -261,6 +262,7 @@ const Showreel = () => {
             width: "100%",
             pointerEvents: "none",
           }}
+          loading="lazy"
           frameBorder={0}
           allow="autoplay; picture-in-picture"
         ></iframe>
@@ -269,4 +271,4 @@ const Showreel = () => {
   );
 };
 
-export default Showreel;
+export default memo(Showreel);
