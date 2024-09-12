@@ -274,6 +274,7 @@
   height: 85vw;
   z-index: 2;
   object-fit: cover;
+  will-change: transform, opacity;
   @include lg {
     top: -35%;
     left: -35%;

@@ -106,13 +106,13 @@ const Work = () => {
             })
             .from(".work-heading path", {
               strokeDashoffset: 2340,
-              duration: 0.8,
+              duration: 1.2,
               ease: "none",
             })
             .to(".work-heading path", {
-              duration: 0.8,
+              duration: 1.2,
               fill: "black",
-              ease: "power3",
+              ease: "power3.inOut",
             });
 
           let tl = gsap.timeline({
@@ -120,7 +120,7 @@ const Work = () => {
               trigger: `.slider`,
               start: isDesktop ? "top+=100 top" : "top top",
               end: "bottom+=8000 bottom",
-              scrub: true,
+              scrub: 0.6,
               pin: true,
               pinSpacing: true,
             },
@@ -130,12 +130,12 @@ const Work = () => {
           data.forEach((_, i) => {
             tl
               .call(() => setCounter(i + 1))
-              .to(`.slide-${i - 1}`, { yPercent: -100, duration: 1 })
-              .from(`.slide-${i}`, { yPercent: i === 0 ? 0 : 100, duration: 1 })
+              .to(`.slide-${i - 1}`, { yPercent: -100})
+              .from(`.slide-${i}`, { yPercent: i === 0 ? 0 : 100}, "<")
               .from(`.work-path-${i + 1}`, {
                 scale: 0,
-                duration: 0.8,
-                ease: "power4",
+                duration: 1,
+                ease: "power4.out",
               })
               .from(`.heading-${i}`, { scale: innerWidth < 1600 ? 0.6 : 0.6 })
               .from(`.image-${i}`, {
@@ -147,8 +147,8 @@ const Work = () => {
               .call(() => setCounter(i + 1))
               .to(`.work-path-${i + 1}`, {
                 scale: 0,
-                duration: 0.8,
-                ease: "power4",
+                duration: 1,
+                ease: "power4.out",
               });
           });
         }

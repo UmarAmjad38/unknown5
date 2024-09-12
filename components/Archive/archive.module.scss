@@ -131,12 +131,16 @@
   }
   &_video {
     position: absolute;
-    width: 67%;
+    width: 74%;
     height: 100%;
-    top: -2%;
+    // top: -1%;
     left: 48.8%;
-    transform: translateX(-50%) scaleY(1.1);
+    transform: translateX(-50%) scaleY(1.2);
     z-index: -1;
+    @include lg {
+      width: 64%;
+      top: -1%;
+    }
   }
   &_img {
     position: relative;
