@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import { useState, useEffect, useRef } from 'react';
 
-// Dynamically import components
 const About = dynamic(() => import('@/components/About/About'));
 const Archive = dynamic(() => import('@/components/Archive/Archive'));
 const Client = dynamic(() => import('@/components/Client/Client'));
@@ -13,7 +13,64 @@ const Showreel = dynamic(() => import('@/components/Showreel/Showreel'));
 const Work = dynamic(() => import('@/components/Work/Work'));
 const Hero = dynamic(() => import('@/components/Hero/Hero'));
 
-export default function Home() {
+const Home: React.FC = () => {
+  const [componentsToLoad, setComponentsToLoad] = useState({
+    About: false,
+    Archive: false,
+    Client: false,
+    Contact: false,
+    Cookie: false,
+    Footer: false,
+    Services: false,
+    Showreel: false,
+    Work: false,
+  });
+
+  const sectionRefs = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    const options = {
+      root: null, // viewport
+      rootMargin: '100px', // trigger 100px before the element enters the viewport
+      threshold: 0.1, // trigger when 10% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = sectionRefs.current.indexOf(entry.target as HTMLDivElement);
+          if (index !== -1) {
+            const componentKeys = Object.keys(componentsToLoad) as Array<keyof typeof componentsToLoad>;
+            const key = componentKeys[index];
+            if (!componentsToLoad[key]) {
+              setComponentsToLoad((prev) => ({ ...prev, [key]: true }));
+            }
+          }
+        }
+      });
+    }, options);
+
+    sectionRefs.current.forEach((ref) => {
+      if (ref) {
+        observer.observe(ref);
+      }
+    });
+
+    return () => {
+      sectionRefs.current.forEach((ref) => {
+        if (ref) {
+          observer.unobserve(ref);
+        }
+      });
+    };
+  }, [componentsToLoad]);
+
+  const addToRefs = (el: HTMLDivElement | null) => {
+    if (el && !sectionRefs.current.includes(el)) {
+      sectionRefs.current.push(el);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -23,15 +80,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero />
-      <Showreel />
-      <Work />
-      <Archive />
-      <Client />
-      <Services />
-      <About />
-      <Contact />
-      <Footer />
-      <Cookie />
+      <div ref={addToRefs}>{componentsToLoad.Showreel && <Showreel />}</div>
+      <div ref={addToRefs}>{componentsToLoad.Work && <Work />}</div>
+      <div ref={addToRefs}>{componentsToLoad.Archive && <Archive />}</div>
+      <div ref={addToRefs}>{componentsToLoad.Client && <Client />}</div>
+      <div ref={addToRefs}>{componentsToLoad.Services && <Services />}</div>
+      <div ref={addToRefs}>{componentsToLoad.About && <About />}</div>
+      <div ref={addToRefs}>{componentsToLoad.Contact && <Contact />}</div>
+      <div ref={addToRefs}>{componentsToLoad.Footer && <Footer />}</div>
+      <div ref={addToRefs}>{componentsToLoad.Cookie && <Cookie />}</div>
     </>
   );
-}
+};
+
+export default Home;

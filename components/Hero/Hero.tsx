@@ -1,20 +1,22 @@
 import s from "./hero.module.scss";
 import { HeroArrowDown } from "../Svg/Svg";
-import Data from "./lottie/data.json";
-import Data2 from './lottie/EndPortion.json';
-import DataM from './lottie/data-m.json';
-import DataM2 from './lottie/data-m2.json';
 import { useScrollTo } from "react-use-window-scroll";
 import useWindowSize from "@/hooks/useWindowSize";
-import Lottie from "react-lottie";
-import { useState, useEffect } from "react";
-import { flushAllTraces } from "next/dist/trace";
-import { memo } from "react"
+import dynamic from "next/dynamic";
+import { useState, useEffect, memo } from "react";
 
-const Hero = () => {
+// Dynamically import Lottie component
+const Lottie = dynamic(() => import('react-lottie'), { ssr: false });
+
+type AnimationData = {
+  default: object;
+};
+
+const Hero: React.FC = () => {
   const scrollTo = useScrollTo();
   const size = useWindowSize();
   const [showData2, setShowData2] = useState(false);
+  const [animationData, setAnimationData] = useState<object | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,26 +26,39 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const getAnimationData = async (): Promise<AnimationData> => {
+    if (size?.width && size.width > 640) {
+      return showData2 ? import('./lottie/EndPortion.json') : import('./lottie/data.json');
+    } else {
+      return showData2 ? import('./lottie/data-m2.json') : import('./lottie/data-m.json');
+    }
+  };
+
+  useEffect(() => {
+    const loadAnimation = async () => {
+      try {
+        const data = await getAnimationData();
+        setAnimationData(data.default);
+      } catch (error) {
+        console.error("Failed to load animation data:", error);
+      }
+    };
+
+    loadAnimation();
+  }, [size, showData2]);
+
   return (
     <section id="hero" className={s.main}>
-      <div onClick={() => scrollTo({ top: innerHeight, behavior: "smooth" })} className={s.arrow}>
+      <div onClick={() => scrollTo({ top: window.innerHeight, behavior: "smooth" })} className={s.arrow}>
         <HeroArrowDown />
       </div>
       <div className={s.lottie}>
-        {size?.width && size.width > 640 ? (
+        {animationData && (
           <Lottie
             options={{
-              loop: showData2 ? true : false,
+              loop: showData2,
               autoplay: true,
-              animationData: showData2 ? Data2 : Data,
-            }}
-          />
-        ) : (
-          <Lottie
-            options={{
-              loop: showData2 ? true : false,
-              autoplay: true,
-              animationData: showData2 ? DataM2 : DataM,
+              animationData: animationData,
             }}
           />
         )}
